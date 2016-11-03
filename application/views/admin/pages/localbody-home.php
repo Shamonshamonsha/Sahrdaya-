@@ -1,0 +1,1 @@
+<h2><?=$this->session->userdata('user')->local_bodyname.' '.$this->session->userdata('user')->local_bodytype?></h2>

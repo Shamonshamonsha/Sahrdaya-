@@ -44,18 +44,14 @@ class Common extends CI_Controller
     public function approve_app($id)
     {
         $this->common_model->update_appstatus($id,'3');
-        /*$this->data = array(
-            'application_id'=>$this->input->post('id'),
-            'sender_id'=>$this->session->userdata('user')->id,
-            'content'=>'Your Application is approved please pay the amount to download the permit',
-            'added_by'=>'AE',
-            'amount_pay'=>$this->input->post('amount'),
-            'content_type'=>'approved',
-            'time_stamp'=>time()
-        );
-       /// $this->common_model->add_remark($this->data);*/
-        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application forwaded to AE'));
+        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application approved'));
         redirect('dashboard/view/ae-pendingapps');
+    }
+    public function approve_appaee($id)
+    {
+        $this->common_model->update_appstatus($id,'3');
+        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application approved'));
+        redirect('dashboard/view/aee-pendingapps');
     }
     public function add_remarkae()
     {
@@ -79,17 +75,25 @@ class Common extends CI_Controller
         }
         return TRUE;
     }
-    public function app_communications()
+    public function app_communications($rdr_type)
     {
 
         if($this->session->userdata('user')->user_type=='5')
         {
             $added_by = 'Building Inspector';
-            $page = 'bi-pendingapps';
-        }else if($this->session->userdata('user')->user_type=='7')
+
+            $page = ($rdr_type=='0')?'bi-pendingapps':'bi-approvedapps';
+        }
+        else if($this->session->userdata('user')->user_type=='7')
         {
             $added_by = 'AE';
-            $page = 'ae-pendingapps';
+            $page = ($rdr_type=='0')?'ae-pendingapps':'ae-approvedapps';
+        }
+        else if($this->session->userdata('user')->user_type=='8')
+        {
+            $added_by = 'AEE';
+            $page = ($rdr_type=='0')?'aee-pendingapps':'aee-approvedapps';
+
         }
         $this->data = array(
             'application_id'=>$this->input->post('id'),
@@ -101,6 +105,18 @@ class Common extends CI_Controller
         $this->common_model->add_messages($this->data);
         $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Remarks added '));
         redirect('dashboard/view/'.$page);
+    }
+    public function forward_aee($id)
+    {
+        $this->common_model->update_appstatus($id,'4');
+        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application forwaded to AEE'));
+        redirect('dashboard/view/ae-pendingapps');
+    }
+    public function forward_ee($id)
+    {
+        $this->common_model->update_appstatus($id,'5');
+        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application forwaded to EE'));
+        redirect('dashboard/view/aee-pendingapps');
     }
     public function add_applicationamount()
     {

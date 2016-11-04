@@ -1,14 +1,21 @@
 <div class="row">
-    <form action="<?=base_url().'user/edit_doc'?>" class="form-horizontal" method="post" action="">
+    <?php if($this->session->flashdata('server_msg')!== NULL): ?>
+        <?php $display =$this->session->flashdata('server_msg') ?>
+        <div class="alert alert-<?=$display['class']; ?> text-center">
+            <strong><?=$display['title']; ?></strong>
+            <?=$display['msg']; ?>
+        </div>
+    <?php endif;?>
+    <form action="<?=base_url().'user/edit_doc'?>" class="form-horizontal" enctype="multipart/form-data" method="post" action="">
     <div class="form-group">
         <label class="control-label col-sm-2" for="email">Select Document Type</label>
         <div class="col-sm-10">
             <select  name="type" class="form-control"  required>
-                <option value="deed">Land Original Deed copy</option>
-                <option value="taxrecipt">Latest tax recipt</option>
-                <option value="possession">Possession certificate</option>
-                <option value="encumbrance">Encumbrance Certificate</option>
-                <option value="noc">NOC & Affidavit</option>
+                <option value="deedcopy">Land Original Deed copy</option>
+                <option value="tax_recipt">Latest tax recipt</option>
+                <option value="pes_certificate">Possession certificate</option>
+                <option value="encumb_cer">Encumbrance Certificate</option>
+                <option value="noc_cer">NOC & Affidavit</option>
             </select>
         </div>
     </div>

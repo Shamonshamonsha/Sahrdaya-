@@ -48,6 +48,12 @@ class Dashboard extends CI_Controller
             case 'ae-pendingapps':
                 $this->data['ae_pendingapps'] = $this->dashboard_model->get_pendingappsae()->result();
                 break;
+            case 'aee-pendingapps':
+                $this->data['aee_pendingapps'] = $this->dashboard_model->get_pendingappsaee()->result();
+                break;
+            case 'aee-approvedapps':
+                $this->data['aee_approveapps'] = $this->dashboard_model->get_approvedapps()->result();
+                break;
         }
     }
     public function logged_in()

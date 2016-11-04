@@ -35,11 +35,33 @@ class User extends CI_Controller
             case 'user-appstatus':
                 $this->data['app_status'] = $this->user_model->check_appstatus($this->session->userdata('user')->id)->result();
                 break;
+            case 'user-payment':
+                $this->data['payment'] = $this->user_model->get_payment($this->session->userdata('user')->id)->row();
+                break;
         }
     }
     public function edit_doc()
     {
-        
+        $config['upload_path']          = './uploads/docs';
+        $config['allowed_types']        = '*';
+        $config['max_size']             = 0;
+        $config['max_filename']         = 20;
+        $config['encrypt_name']         = TRUE;
+        $this->load->library('upload', $config);
+        if(!$this->upload->do_upload('edit-doc'))
+        {
+            $this->session->set_flashdata('server_msg', array('class' => 'danger', 'title' => 'Error', 'msg' => $this->upload->display_errors()));
+            redirect('user/view/user-editdocs');
+        }
+        else
+        {
+            $this->data = array(
+                $this->input->post('type')=>$this->upload->data('file_name')
+            );
+            $this->user_model->update_doc($this->data,$this->session->userdata('user')->id);
+            $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Error', 'msg' =>'Document Updated'));
+            redirect('user/view/user-editdocs');
+        }
     }
     public function add_userreply()
     {

@@ -42,10 +42,23 @@ class Dashboard_model extends CI_Model
     {
         return $this->db
             ->order_by('id', 'desc')
-            ->where_in('status', ['2', '3'])
+            ->where_in('status', ['2','4'])
             ->get('applications');
     }
-
+    public function get_pendingappsaee()
+    {
+        return $this->db
+            ->order_by('id', 'desc')
+            ->where_in('status', ['5','4'])
+            ->get('applications');
+    }
+    public function get_approvedapps()
+    {
+        return $this->db
+            ->order_by('id', 'desc')
+            ->where_in('status', ['3'])
+            ->get('applications');
+    }
     public function get_forwader($id)
     {
         return $this->db

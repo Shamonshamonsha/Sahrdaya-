@@ -8,7 +8,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * local users BI-5
  * AE-7
  * AEE-8
+ * EE-9
  * Architect Login-6
+ * ------------
+ * 1-pending in BI
+ * 2-Forward to AE
+ * 3-Approved
+ * 4-Forward to AEE
+ * 5-Forward to EE
  */
 class Home extends CI_Controller {
 

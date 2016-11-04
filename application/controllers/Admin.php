@@ -73,8 +73,16 @@ class Admin extends CI_Controller
             else if($result->row()->user_type=='8')
             {
                 //super admin
+                $this->session->set_userdata('designation','AEE:'.$result->row()->localbody_name.' '.$result->row()->localbody_type);
                 $this->session->set_userdata('user',$result->row());
                 redirect('dashboard/view/aee-home');
+            }
+            else if($result->row()->user_type=='9')
+            {
+                //super admin
+                $this->session->set_userdata('designation','EE:'.$result->row()->localbody_name.' '.$result->row()->localbody_type);
+                $this->session->set_userdata('user',$result->row());
+                redirect('dashboard/view/ee-home');
             }
         }
         else

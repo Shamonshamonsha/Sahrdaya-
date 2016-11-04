@@ -24,6 +24,16 @@ class User_model extends CI_Model
     {
         $this->db->insert('application_remarks',$data);
     }
+    public function update_doc($data,$id)
+    {
+        $this->db->update('applications',$data,['id'=>$id]);
+    }
+    public function get_payment($id)
+    {
+        return $this->db
+            ->where('application_id',$id)
+            ->get('application_payments');
+    }
     public function check_appstatus($id)
     {
         /*return $this->db

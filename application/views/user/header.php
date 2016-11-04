@@ -38,12 +38,12 @@
     <div class="collapse navbar-collapse navbar-right">
       <ul class="nav navbar-nav">
         <li class="<?php if($page=='user-home')echo 'active';?>"><a href="<?=base_url()?>user/view/">Home</a></li>
-        <li class="<?php if($page=='user-appreply')echo 'active';?>"><a href="<?=base_url()?>user/view/user-appreply">Payment</a></li>
+        <li class="<?php if($page=='user-payment')echo 'active';?>"><a href="<?=base_url()?>user/view/user-payment">Payment</a></li>
         <li class="<?php if($page=='user-viewapplication')echo 'active';?>"><a href="<?=base_url()?>user/view/user-viewapplication">View Application</a></li>
         <li class="<?php if($page=='user-appstatus')echo 'active';?>"><a href="<?=base_url()?>user/view/user-appstatus">Remarks</a></li>
         <?php if($status) {?>
           <li class="<?php if($page=='user-editdocs')echo 'active';?>"><a href="<?=base_url()?>user/view/user-editdocs">Edit Docs</a></li>
-          <li class="<?php if($page=='user-edit-data')echo 'active';?>"><a href="<?=base_url()?>user/view/user-edit-data">Edit Data</a></li>
+         <!-- <li class="<?php if($page=='user-edit-data')echo 'active';?>"><a href="<?=base_url()?>user/view/user-edit-data">Edit Data</a></li>-->
         <?php }?>
         <li class=""><a href="<?=base_url()?>dashboard/logout">Logout</a></li>
       </ul>

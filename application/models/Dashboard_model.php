@@ -42,7 +42,7 @@ class Dashboard_model extends CI_Model
     {
         return $this->db
             ->order_by('id', 'desc')
-            ->where_in('status', ['2','4'])
+            ->where_in('status', ['1','2','4'])
             ->get('applications');
     }
     public function get_pendingappsaee()
@@ -99,6 +99,13 @@ class Dashboard_model extends CI_Model
         return $this->db
             ->where('application_id',$id)
             ->get('application_forwarder');
+    }
+    public function check_sitevisit($id)
+    {
+        return $this->db
+             ->select('status')
+            ->where('application_id',$id)
+            ->get('sitevisit_request');
     }
     public function get_remarks($id)
     {

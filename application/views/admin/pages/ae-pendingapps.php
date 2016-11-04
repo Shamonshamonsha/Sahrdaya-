@@ -29,6 +29,8 @@
                             echo '<strong style="color: #acc97b">Approved</strong>';
                         }else if($value->status=='4'){
                             echo '<strong style="color: #c9302c">Forward to AEE</strong>';
+                        }else if($value->status=='1'){
+                            echo '<strong style="color: #c9302c">Pending with BI</strong>';
                         }
                         ?>
                     </div>
@@ -36,6 +38,25 @@
                 <div id="collapse<?=$key?>" class="panel-collapse collapse">
                     <div class="panel-body">
                         <table class="table">
+                            <?php
+                            $request=$this->dashboard_model->check_sitevisit($value->id)->row();
+                            $request = (empty($request))?'0':$request->status;
+                            if($request!='0'){
+                            ?>
+                            <a  href="<?=base_url().'common/sitevisit_request/'.$value->id?>" class="btn btn-primary <?php if($request=='1'||$request=='2')echo 'disabled ';?>">
+                                <?php
+                                if($request=='1'){
+                                    echo 'Site visit requested';
+                                }else if($request=='2'){
+                                    echo 'Site visit approved';
+                                }else if($request=='3'){
+                                    echo 'Rejected';
+                                }else{
+                                    echo 'Request site visit';
+                                }
+                                ?>
+                            </a>
+                            <?php } ?>
                             <tr>
                                 <th>Applicant Name</th>
                                 <td><?=$value->applicant_name?></td>

@@ -31,7 +31,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><?=$this->session->userdata('user')->application_id.'/'.$this->session->userdata('user')->name?></a>
+      <a class="navbar-brand" href="#"><?=$this->session->userdata('user')->application_id.'/'.$this->session->userdata('user')->applicant_name?></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

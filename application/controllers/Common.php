@@ -185,6 +185,12 @@ class Common extends CI_Controller
         $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Payment added'));
         redirect('dashboard/view/ae-pendingapps');
     }
+    public function sitevisit_request($id)
+    {
+        $this->common_model->add_sitevisit($id);
+        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Site visit requested'));
+        redirect('dashboard/view/bi-pendingapps');
+    }
     public function govt_action($id,$update_val='1')
     {
         $status = ($update_val=='1')?'3':'10';

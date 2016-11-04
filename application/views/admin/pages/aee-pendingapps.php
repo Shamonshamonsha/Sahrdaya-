@@ -121,7 +121,7 @@
                                 <td><?=$value->parking_area?></td>
                             </tr>
                             <tr>
-                                <th>Total building area</th>
+                                <th>Total building area(M<sup>2</sup>)</th>
                                 <td><?=$value->totalbuild_area?></td>
                             </tr>
                             <tr>

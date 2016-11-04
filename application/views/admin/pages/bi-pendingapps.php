@@ -152,7 +152,26 @@
                     </tr>
                 </table>
                 <div class="row">
-                <a style="float: right" href="<?=base_url().'common/forward_ae/'.$value->id?>" class="btn btn-primary <?php if($value->status=='2')echo 'disabled';?>">Submit to AE</a>
+                    <?php
+                    if($value->totalbuild_area>300){
+                        $request=$this->dashboard_model->check_sitevisit($value->id)->row();
+                        $request = (empty($request))?'0':$request->status;
+                        ?>
+                    <a  href="<?=base_url().'common/sitevisit_request/'.$value->id?>" class="btn btn-primary <?php if($request=='1'||$request=='2')echo 'disabled ';?>">
+                        <?php
+                         if($request=='1'){
+                            echo 'Site visit requested';
+                        }else if($request=='2'){
+                             echo 'Site visit approved';
+                        }else if($request=='3'){
+                             echo 'Rejected';
+                         }else{
+                             echo 'Request site visit';
+                         }
+                        ?>
+                    </a>
+                    <?php }?>
+                    <a style="float: right" href="<?=base_url().'common/forward_ae/'.$value->id?>" class="btn btn-primary <?php if($value->status=='2')echo 'disabled';?>">Submit to AE</a>
                  </div>
                    <br>
                     <div class="row">

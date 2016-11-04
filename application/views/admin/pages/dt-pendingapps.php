@@ -13,7 +13,7 @@
         </div>
     <?php endif;?>
     <div class="panel-group" id="accordion">
-        <?php  foreach ($ae_pendingapps as $key=>$value){ ?>
+        <?php  foreach ($dt_pendingapps as $key=>$value){ ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
@@ -22,12 +22,24 @@
                     </h4>
                     <div style="float:right; margin-top: -20px">
                         <?php
-                        if($value->status=='2'){
-                            echo '<strong style="color: #c9302c">Pending</strong>';
+                        if($value->status=='1'){
+                            echo '<strong style="color: #c9302c">Pending with BI</strong>';
                         }else if($value->status=='3'){
                             echo '<strong style="color: #acc97b">Approved</strong>';
                         }else if($value->status=='4'){
-                            echo '<strong style="color: #c9302c">Forward to AEE</strong>';
+                            echo '<strong style="color: #c9302c">Pending with AEE</strong>';
+                        }else if($value->status=='5'){
+                            echo '<strong style="color: #c9302c">Pending with EE</strong>';
+                        }else if($value->status=='2'){
+                            echo '<strong style="color: #c9302c">Pending with Secretary</strong>';
+                        }else if($value->status=='6'){
+                            echo '<strong style="color: #c9302c">Pending with AE</strong>';
+                        }
+                        else if($value->status=='7'){
+                            echo '<strong style="color: #c9302c">Pending with DTO</strong>';
+                        }
+                        else if($value->status=='8'){
+                            echo '<strong style="color: #c9302c">Forward to CTO</strong>';
                         }
                         ?>
                     </div>
@@ -152,15 +164,8 @@
                                 <td><a target="_blank" href="<?=base_url().'uploads/docs/'.$value->noc_cer?>">view/download</a></td>
                             </tr>
                         </table>
-                        <button type="button" app-id="<?=$value->id?>" class="remark-btn btn btn-primary">Add Fees</button>
-                        <?php if($value->totalbuild_area<='300'){ ?>
-                        <div class="row">
-                            <a style="float: right" href="<?=base_url().'common/approve_app/'.$value->id?>" class="btn btn-primary <?php if($value->status=='3')echo 'disabled';?>">Approve</a>
-                        </div>
-                        <?php } else {?>
-                            <a style="float: right" href="<?=base_url().'common/forward_aee/'.$value->id?>" class="btn btn-primary <?php if($value->status=='4')echo 'disabled';?>">Forward AEE</a>
-                            <br>
-                        <?php }?>
+                        <a  href="<?=base_url().'common/forward_ct/'.$value->id?>" class="btn btn-primary <?php if($value->status=='8')echo 'disabled';?>">Forward to CTO</a>
+                        <a style="float: right" href="<?=base_url().'common/approve_appdt/'.$value->id?>" class="btn btn-primary <?php if($value->status=='3'||$value->status=='8')echo 'disabled';?>">Approve</a>
                         <br>
                         <div class="row">
                             <div class="form-group">
@@ -194,8 +199,8 @@
                                 </div>
                             <?php }?>
                         </div>
-                         <!--<button type="button" app-id="<?=$value->id?>" class="remark-btn btn btn-primary">Add Fees</button>-->
-                <!--<a href="<?=base_url().'common/forward_ae/'.$value->id?>" class="btn btn-primary <?php if($value->status=='2')echo 'disabled';?>">Submit to AE</a>
+                        <!--<button type="button" app-id="<?=$value->id?>" class="remark-btn btn btn-primary">Add Fees</button>-->
+                        <!--<a href="<?=base_url().'common/forward_ae/'.$value->id?>" class="btn btn-primary <?php if($value->status=='2')echo 'disabled';?>">Submit to AE</a>
                 <button type="button" app-id="<?=$value->id?>" class="req-btn btn btn-danger">Request for Site visit</button>
                 <button type="button" app-id="<?=$value->id?>" class="report-btn btn btn-primary">Site Visit Report</button>-->
                     </div>

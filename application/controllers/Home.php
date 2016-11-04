@@ -16,6 +16,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * 3-Approved
  * 4-Forward to AEE
  * 5-Forward to EE
+ * 6-Forward to Sectrey
+ * 7-Forward to DT
+ * 8-Forwadr to CT
+ * 9 Forward to super(GOVT)
  */
 class Home extends CI_Controller {
 

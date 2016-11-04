@@ -1,7 +1,7 @@
 <div class="row">
     <h3>Add Login</h3>
     <br>
-    <form class="form-horizontal" method="post" action="<?=base_url()?>admin/login_action">
+    <form class="form-horizontal" method="post" action="">
         <div class="form-group">
             <label class="control-label col-sm-2" for="email">Officer Name:</label>
             <div class="col-sm-10">

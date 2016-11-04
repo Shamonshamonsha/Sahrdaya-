@@ -29,15 +29,6 @@ class Common extends CI_Controller
     public function forward_ae($id)
     {
        $this->common_model->update_appstatus($id,'2');
-        /*$this->data = array(
-            'application_id'=>$id,
-             'sender_id'=>$this->session->userdata('user')->id,
-            'content'=>'Application forwarded to AE',
-            'added_by'=>$added_by,
-            'content_type'=>'remarks',
-            'time_stamp'=>time()
-        );
-        $this->common_model->add_remark($this->data);*/
         $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application forwaded to AE'));
         redirect('dashboard/view/bi-pendingapps');
     }
@@ -52,6 +43,30 @@ class Common extends CI_Controller
         $this->common_model->update_appstatus($id,'3');
         $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application approved'));
         redirect('dashboard/view/aee-pendingapps');
+    }
+    public function approve_appee($id)
+    {
+        $this->common_model->update_appstatus($id,'3');
+        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application approved'));
+        redirect('dashboard/view/ee-pendingapps');
+    }
+     public function approve_appse($id)
+     {
+         $this->common_model->update_appstatus($id,'3');
+         $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application approved'));
+         redirect('dashboard/view/se-pendingapps');
+     }
+    public function approve_appdt($id)
+    {
+        $this->common_model->update_appstatus($id,'3');
+        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application approved'));
+        redirect('dashboard/view/dt-pendingapps');
+    }
+    public function approve_ct($id)
+    {
+        $this->common_model->update_appstatus($id,'3');
+        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application approved'));
+        redirect('dashboard/view/ct-pendingapps');
     }
     public function add_remarkae()
     {
@@ -95,6 +110,30 @@ class Common extends CI_Controller
             $page = ($rdr_type=='0')?'aee-pendingapps':'aee-approvedapps';
 
         }
+        else if($this->session->userdata('user')->user_type=='9')
+        {
+            $added_by = 'EE';
+            $page = ($rdr_type=='0')?'ee-pendingapps':'ee-approvedapps';
+
+        }
+        else if($this->session->userdata('user')->user_type=='4')
+        {
+            $added_by = 'Secretary';
+            $page = ($rdr_type=='0')?'se-pendingapps':'se-approvedapps';
+
+        }
+        else if($this->session->userdata('user')->user_type=='3')
+        {
+            $added_by = 'DTO';
+            $page = ($rdr_type=='0')?'dt-pendingapps':'dt-approvedapps';
+
+        }
+        else if($this->session->userdata('user')->user_type=='2')
+        {
+            $added_by = 'CTO';
+            $page = ($rdr_type=='0')?'ct-pendingapps':'ct-approvedapps';
+
+        }
         $this->data = array(
             'application_id'=>$this->input->post('id'),
             'sender_id'=>$this->session->userdata('user')->id,
@@ -114,9 +153,27 @@ class Common extends CI_Controller
     }
     public function forward_ee($id)
     {
-        $this->common_model->update_appstatus($id,'5');
+        $this->common_model->update_appstatus($id,'6');
         $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application forwaded to EE'));
         redirect('dashboard/view/aee-pendingapps');
+    }
+    public function forward_dt($id)
+    {
+        $this->common_model->update_appstatus($id,'7');
+        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application forwaded to District town plan officer'));
+        redirect('dashboard/view/ee-pendingapps');
+    }
+    public function forward_ct($id)
+    {
+        $this->common_model->update_appstatus($id,'8');
+        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application forwaded to CTO'));
+        redirect('dashboard/view/dt-pendingapps');
+    }
+    public function forward_govt($id)
+    {
+        $this->common_model->update_appstatus($id,'9');
+        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application forwaded to GOVT'));
+        redirect('dashboard/view/ct-pendingapps');
     }
     public function add_applicationamount()
     {

@@ -52,6 +52,34 @@ class Dashboard_model extends CI_Model
             ->where_in('status', ['5','4'])
             ->get('applications');
     }
+    public function get_pendingappsee()
+    {
+        return $this->db
+            ->order_by('id', 'desc')
+            ->where_in('status', ['5','4','2'])
+            ->get('applications');
+    }
+    public function get_pendingappsse()
+    {
+        return $this->db
+            ->order_by('id', 'desc')
+            ->where_in('status', ['6','5','4','2','7'])
+            ->get('applications');
+    }
+    public function get_pendingappsdt()
+    {
+        return $this->db
+            ->order_by('id', 'desc')
+            ->where_in('status', ['1','2','4','5','6','7','8'])
+            ->get('applications');
+    }
+    public function get_pendingappsct()
+    {
+        return $this->db
+            ->order_by('id', 'desc')
+            ->where_in('status', ['1','2','4','5','6','7','8','9'])
+            ->get('applications');
+    }
     public function get_approvedapps()
     {
         return $this->db

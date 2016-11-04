@@ -64,7 +64,7 @@ class Applications extends CI_Controller
                 if (!$this->upload->do_upload($value))
                 {
 
-                    $this->session->set_userdata('old',$_POST);
+                    $this->session->set_tempdata('old',$_POST);
                     $this->session->set_flashdata('server_msg', array('class' => 'danger', 'title' => 'Error', 'msg' => $this->upload->display_errors()));
                     redirect('user/view');
                     break;

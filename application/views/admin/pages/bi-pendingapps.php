@@ -157,7 +157,7 @@
                         $request=$this->dashboard_model->check_sitevisit($value->id)->row();
                         $request = (empty($request))?'0':$request->status;
                         ?>
-                    <a  href="<?=base_url().'common/sitevisit_request/'.$value->id?>" class="btn btn-primary <?php if($request=='1'||$request=='2'||$request=='4')echo 'disabled ';?>">
+                     <a  href="<?=base_url().'common/sitevisit_request/'.$value->id?>" class="btn btn-primary <?php if($request=='1'||$request=='2'||$request=='4')echo 'disabled ';?>">
                         <?php
                          if($request=='1'){
                             echo 'Site visit requested';
@@ -174,13 +174,16 @@
                         ?>
                     </a>
                     <?php }?>
-                    <a style="float: right" href="<?=base_url().'common/forward_ae/'.$value->id?>" class="btn btn-primary <?php if($value->status=='2')echo 'disabled';?>">Submit to AE</a>
+                    <a style="" href="<?=base_url().'common/forward_ae/'.$value->id?>" class="btn btn-primary <?php if($value->status=='2')echo 'disabled';?>">Submit to AE</a>
+
+                    <a style="" href="<?=base_url().'common/resumbit_application/'.$value->id?>" class="btn btn-primary <?php if($value->status=='2')echo 'disabled';?>">Resubmit</a>
                  </div>
                    <br>
                 <div class="row">
+                    <h4>Remarks</h4>
+                    <hr/>
                     <div class="form-group">
                         <form class="form-horizontal" action="<?=base_url()?>common/app_communications" method="post">
-                            <label class="control-label col-sm-2" for="email">Remarks:</label>
                             <div class="col-sm-10">
                                 <input type="hidden" name="id" value="<?=$value->id?>">
                                 <textarea name="remarks" class="form-control" id="email" placeholder="" ></textarea>
@@ -190,7 +193,7 @@
                         </form>
                     </div>
                 </div>
-                <?php if($request == '2'){ ?>
+                <?php if(!empty($request)){ if($request == '2'){ ?>
                 <div class="row">
                     <div class="form-group">
                         <form class="form-horizontal" action="<?=base_url()?>common/add_sitevisitreport" method="post">
@@ -204,7 +207,7 @@
                         </form>
                     </div>
                 </div>
-                <?php }?>
+                <?php }}?>
                 <div class="row">
                     <br>
                     <?php

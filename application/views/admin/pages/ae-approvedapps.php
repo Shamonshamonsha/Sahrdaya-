@@ -152,8 +152,8 @@
                                 <td><a target="_blank" href="<?=base_url().'uploads/docs/'.$value->noc_cer?>">view/download</a></td>
                             </tr>
                         </table>
-                         <button type="button" app-id="<?=$value->id?>" class="remark-btn btn btn-primary">Add Fees</button>
-                     <!--   <?php if($value->totalbuild_area>'300'&&$value->totalbuild_area<750){ ?>
+                     <!--    <button type="button" app-id="<?=$value->id?>" class="remark-btn btn btn-primary">Add Fees</button>
+                        <?php if($value->totalbuild_area>'300'&&$value->totalbuild_area<750){ ?>
                             <div class="row">
                                 <a style="float: right" href="<?=base_url().'common/approve_appaee/'.$value->id?>" class="btn btn-primary <?php if($value->status=='3')echo 'disabled';?>">Approve</a>
                             </div>

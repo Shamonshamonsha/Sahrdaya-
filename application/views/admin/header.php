@@ -31,7 +31,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><?=$this->session->userdata('designation').' :'.$this->session->userdata('user')->name.' / '.$this->session->userdata('user')->district?></a>
+      <a class="navbar-brand" href="#"><?=$this->session->userdata('designation').' : '.$this->session->userdata('user')->name.'  '.$this->session->userdata('user')->district?></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

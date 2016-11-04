@@ -2,6 +2,7 @@
     <div class="alert alert-<?=($upload_status)?'success':'warning'?> text-center">
         <?php
         $old = $this->session->userdata('old');
+        $this->session->unset_userdata('old');
         if($upload_status){
             echo 'Congraulations your application submitted properly,check the remarks  to know the status of the application';
         }else{
@@ -71,7 +72,7 @@
                 <input type="text" value="<?=$old['block_number']?>" name="block_number" class="form-control" id="email" placeholder="" required>
             </div>
         </div>
-        <h2>Technical Data(Meters)</h2>
+        <h2>Technical Data( In m<sup>2</sup>)</h2>
         </hr>
         <div class="form-group">
             <label class="control-label col-sm-2" for="email">Height of building:</label>
@@ -127,13 +128,6 @@
                 <input type="text" value="<?=$old['totalbuild_area']?>" name="totalbuild_area" class="form-control" id="email" placeholder="" required>
             </div>
         </div>
-        <h2>Applicant Undertaking</h2>
-        <hr/>
-        <div class="form-group">
-            <div class="col-sm-10">
-                <label><input type="checkbox" name="agree_box"  id="email" placeholder="" required>  I Solemnly declare and firm that the particulars furnished are true to best of my knowledge and belief</label>
-            </div>
-        </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="email">Land Original Deed copy*</label>
             <div class="col-sm-10">
@@ -162,6 +156,13 @@
             <label class="control-label col-sm-2" for="email">NOC & Affidavit</label>
             <div class="col-sm-10">
                 <input type="file" name="noc" class="form-control" id="email" placeholder="" >
+            </div>
+        </div>
+        <h2>Applicant Undertaking</h2>
+        <hr/>
+        <div class="form-group">
+            <div class="col-sm-10">
+                <label><input type="checkbox" name="agree_box"  id="email" placeholder="" required>  I Solemnly declare and firm that the particulars furnished are true to best of my knowledge and belief</label>
             </div>
         </div>
         <div class="form-group">

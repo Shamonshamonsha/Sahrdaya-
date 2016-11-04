@@ -25,10 +25,9 @@
                     <strong>
             </div>
             <?php
-        } else if ($payment->status == '0') {
-            echo '<center><h4>when application is approved payment button is appeard here</h4></center>';
         }
-
+    }else  {
+        echo '<center><h4>Your application is pending with the building inspector/overseer.Please wait till your application get approved by AE.Once verified the payment link will be available.</h4></center>';
     }    ?>
 
 </div>

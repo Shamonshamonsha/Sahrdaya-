@@ -27,62 +27,62 @@ class Admin extends CI_Controller
             {
                 //super admin
                 $this->session->set_userdata('user',$result->row());
-                redirect('dashboard/view/super-home');
+                redirect('dashboard/view/super-pendingapps');
             }
             else if($result->row()->user_type=='2')
             {
-                //super admin
+                //
                 $this->session->set_userdata('designation','Chief TownPlan Officer');
                 $this->session->set_userdata('user',$result->row());
-                redirect('dashboard/view/townplanner-home');
+                redirect('dashboard/view/ct-pendingapps');
             }
             else if($result->row()->user_type=='3')
             {
-                //super admin
+                //
                 $this->session->set_userdata('designation','District TownPlan Officer');
                 $this->session->set_userdata('user',$result->row());
-                redirect('dashboard/view/distplanner-home');
+                redirect('dashboard/view/dt-pendingapps');
             }
             else if($result->row()->user_type=='4')
             {
                 //super admin
                 $this->session->set_userdata('designation',$result->row()->local_bodyname.' '.$result->row()->local_bodytype);
                 $this->session->set_userdata('user',$result->row());
-                redirect('dashboard/view/localbody-home');
+                redirect('dashboard/view/se-pendingapps');
             }
             else if($result->row()->user_type=='5')
             {
-                //BI AE
+                //BI
                 $this->session->set_userdata('designation','Building Inspector');
                 $this->session->set_userdata('user',$result->row());
-                redirect('dashboard/view/localbody-home');
+                redirect('dashboard/view/bi-pendingapps');
             }
             else if($result->row()->user_type=='6')
             {
-                //super admin
+                $this->session->set_userdata('designation','Architect');
                 $this->session->set_userdata('user',$result->row());
-                redirect('dashboard/view/arch-home');
+                redirect('dashboard/view/arch-uploadplan');
             }
             else if($result->row()->user_type=='7')
             {
                 //super admin
                 $this->session->set_userdata('designation','AE:'.$result->row()->localbody_name.' '.$result->row()->localbody_type);
                 $this->session->set_userdata('user',$result->row());
-                redirect('dashboard/view/ae-home');
+                redirect('dashboard/view/ae-pendingapps');
             }
             else if($result->row()->user_type=='8')
             {
                 //super admin
                 $this->session->set_userdata('designation','AEE:'.$result->row()->localbody_name.' '.$result->row()->localbody_type);
                 $this->session->set_userdata('user',$result->row());
-                redirect('dashboard/view/aee-home');
+                redirect('dashboard/view/aee-pendingapps');
             }
             else if($result->row()->user_type=='9')
             {
                 //super admin
                 $this->session->set_userdata('designation','EE:'.$result->row()->localbody_name.' '.$result->row()->localbody_type);
                 $this->session->set_userdata('user',$result->row());
-                redirect('dashboard/view/ee-home');
+                redirect('dashboard/view/ee-pendingapps');
             }
         }
         else

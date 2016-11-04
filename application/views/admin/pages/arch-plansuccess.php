@@ -12,7 +12,7 @@
 
       $msg = 'userId:'.$temp[0].'%0a';
       $msg.='password:'.$temp[1];
-     send_sms($temp[2],$msg);
+      send_sms($temp[2],$msg);
      function send_sms($number,$message)
      {
          // $number = '7736527089';
@@ -24,7 +24,6 @@
          curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
          $response=curl_exec($curl);
          curl_close($curl);
-         print_r($response);
      }
      ?>
     </div>

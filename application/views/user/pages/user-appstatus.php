@@ -7,6 +7,9 @@
         </div>
     <?php endif;?>
     <?php
+    if(empty($app_status)){
+        echo '<p style="font-weight: bold" class="text-center text-info">Your application is pending with building inspector</p>';
+    }
     foreach ($app_status as $value){
     ?>
     <div class="alert alert-warning">
@@ -22,6 +25,7 @@
     </div>
     <?php }?>
 </div>
+<?php if(!empty($app_status)){ ?>
 <div class="row">
     <div class="form-group">
         <form class="form-horizontal" action="<?=base_url()?>user/add_userreply" method="post">
@@ -35,3 +39,4 @@
         </form>
     </div>
 </div>
+<?php }?>

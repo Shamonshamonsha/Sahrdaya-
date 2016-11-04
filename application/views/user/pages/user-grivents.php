@@ -1,4 +1,5 @@
 <div class="row">
+    <hr/>
     <?php if($this->session->flashdata('server_msg')!== NULL): ?>
         <?php $display =$this->session->flashdata('server_msg') ?>
         <div class="alert alert-<?=$display['class']; ?> text-center">
@@ -21,7 +22,7 @@
 <div class="row">
     <div class="form-group">
         <form class="form-horizontal" action="<?=base_url()?>common/add_complaint" method="post">
-            <label class="control-label col-sm-2" for="email">Reply:</label>
+            <label class="control-label col-sm-2" for="email">Enter your complaint</label>
             <div class="col-sm-10">
                 <input type="hidden" name="id" value="<?=$this->session->userdata('user')->id?>">
                 <textarea name="complaints" class="form-control" id="email" placeholder="" ></textarea>

@@ -30,7 +30,7 @@ class User extends CI_Controller
                  $this->data['application'] = $this->user_model->get_application($this->session->userdata('user')->id)->row();
                 break;
             case 'user-home':
-                $this->data['upload_status'] = $this->user_model->check_status($this->session->userdata('user')->id);
+                $this->data['upload_status'] = $this->user_model->check_firstsubmit($this->session->userdata('user')->id);
                 break;
             case 'user-appstatus':
                 $this->data['app_status'] = $this->user_model->check_appstatus($this->session->userdata('user')->id)->result();
@@ -41,7 +41,16 @@ class User extends CI_Controller
             case 'user-payment':
                 $this->data['payment'] = $this->user_model->get_payment($this->session->userdata('user')->id)->row();
                 break;
+            case 'user-edit-data':
+                $this->data['user_data'] = $this->user_model->get_userdata($this->session->userdata('user')->id)->result_array();
+                break;
         }
+    }
+    public function edit_data()
+    {
+        $this->user_model->update_data($_POST,$this->session->userdata('user')->id);
+        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' => 'User data updated'));
+        redirect('user/view/user-edit-data');
     }
     public function edit_doc()
     {
@@ -53,7 +62,7 @@ class User extends CI_Controller
         $this->load->library('upload', $config);
         if(!$this->upload->do_upload('edit-doc'))
         {
-            $this->session->set_flashdata('server_msg', array('class' => 'danger', 'title' => 'Error', 'msg' => $this->upload->display_errors()));
+            $this->session->set_flashdata('server_msg', array('class' => 'danger', 'title' => 'Success', 'msg' => $this->upload->display_errors()));
             redirect('user/view/user-editdocs');
         }
         else
@@ -88,11 +97,11 @@ class User extends CI_Controller
     }
     public function payment_success()
     {
-
         $this->data = array(
           'transaction_id'=>$_POST['txnid'],
            'status'=>'1'
         );
+        $this->user_model->update_appstatus($this->session->userdata('user')->id);
         $this->user_model->update_payment($this->data,$this->session->userdata('user')->id);
         redirect('user/view/user-payment');
     }

@@ -77,8 +77,8 @@
             <div class="col-sm-10">
                 <select class="form-control" name="localbody_type" required>
                     <option>Coperation</option>
-                    <option>Municipality</option>
-                    <option>Panchayyath</option>
+                    <option>Muncipality</option>
+                    <option>Panchayath</option>
                 </select>
             </div>
         </div>

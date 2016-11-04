@@ -12,6 +12,21 @@ class Common_model extends CI_Model
     {
         $this->db->insert('application_remarks', $data);
     }
+    public function is_userpayed($id)
+    {
+        return $this->db
+            ->where('application_id',$id)
+            ->where('status','1')
+            ->count_all_results('application_payments')>0;
+    }
+    public function update_resubmit($id)
+    {
+        $this->db->update('application_upload_status',['status'=>'1'],['application_id'=>$id]);
+    }
+    public function lock_edit($id)
+    {
+        $this->db->update('application_upload_status',['status'=>'0'],['application_id'=>$id]);
+    }
     public function add_messages($data)
     {
         $this->db->insert('application_remarks', $data);

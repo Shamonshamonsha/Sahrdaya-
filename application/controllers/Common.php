@@ -34,9 +34,23 @@ class Common extends CI_Controller
     }
     public function approve_app($id)
     {
-        $this->common_model->update_appstatus($id,'3');
-        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application approved'));
-        redirect('dashboard/view/ae-pendingapps');
+        if($this->common_model->is_userpayed($id))
+        {
+            $this->common_model->update_appstatus($id, '3');
+            $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' => 'Application approved'));
+            redirect('dashboard/view/ae-pendingapps');
+        }
+        else
+        {
+            echo '<center><p style="color: #CC0000;font-size: 40px;" class="text-center">Payment is not completed</p></center>';
+            echo '<a class="btn btn-danger" href="'.base_url().'dashboard/view/ae-pendingapps">Home</a>';
+        }
+    }
+    public function resumbit_application($id)
+    {
+        $this->common_model->update_resubmit($id);
+        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' => 'Resubmit requested'));
+        redirect('dashboard/view/bi-pendingapps');
     }
     public function approve_appaee($id)
     {
@@ -183,6 +197,7 @@ class Common extends CI_Controller
             'amount_topay'=>$this->input->post('amount'),
         );
         $this->common_model->add_payement($this->data);
+        $this->common_model->lock_edit($this->input->post('id'));
         $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Payment added'));
         redirect('dashboard/view/ae-pendingapps');
     }
@@ -266,6 +281,7 @@ class Common extends CI_Controller
         $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application Updated'));
         redirect('dashboard/view/aee-pendingapps');
     }
+
     public function add_complaint()
     {
         $this->data = array(

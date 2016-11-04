@@ -175,7 +175,18 @@
                                 <td><a target="_blank" href="<?=base_url().'uploads/docs/'.$value->noc_cer?>">view/download</a></td>
                             </tr>
                         </table>
-                        <button type="button" app-id="<?=$value->id?>" class="remark-btn btn btn-primary">Add Fees</button>
+                        <?php
+                          $is_payed = $this->dashboard_model->check_payement($value->id);
+                        ?>
+                        <button type="button" app-id="<?=$value->id?>" class="remark-btn btn btn-primary <?php if($is_payed) echo 'disabled'; ?>">
+                            <?php
+                             if($is_payed){
+                                echo 'Fees Added';
+                             }else{
+                                 echo 'Add fees';
+                             }
+                            ?>
+                        </button>
                         <?php if($value->totalbuild_area<='300'){ ?>
                         <div class="row">
                             <a style="float: right" href="<?=base_url().'common/approve_app/'.$value->id?>" class="btn btn-primary <?php if($value->status=='3')echo 'disabled';?>">Approve</a>
@@ -313,7 +324,7 @@
     })
     $('.remark-btn').click(function () {
         var id=$(this).attr('app-id');
-        alert(id);
+       // alert(id);
         $('#app1-uniqid').val(id);
         $('#remarkModal').modal('show');
     })

@@ -31,7 +31,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><?=$this->session->userdata('user')->application_id.'/'.$this->session->userdata('user')->applicant_name?></a>
+      <a class="navbar-brand" href="#"><?='Applicaion no:'.$this->session->userdata('user')->application_id.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name:'.$this->session->userdata('user')->applicant_name?></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -42,9 +42,10 @@
         <li class="<?php if($page=='user-viewapplication')echo 'active';?>"><a href="<?=base_url()?>user/view/user-viewapplication">View Application</a></li>
         <li class="<?php if($page=='user-appstatus')echo 'active';?>"><a href="<?=base_url()?>user/view/user-appstatus">Remarks</a></li>
         <li class="<?php if($page=='user-grivents')echo 'active';?>"><a href="<?=base_url()?>user/view/user-grivents">Grievance Redressal cell</a></li>
-        <?php if($status) {?>
+        <?php
+        if(!$status) {?>
           <li class="<?php if($page=='user-editdocs')echo 'active';?>"><a href="<?=base_url()?>user/view/user-editdocs">Edit Docs</a></li>
-         <!-- <li class="<?php if($page=='user-edit-data')echo 'active';?>"><a href="<?=base_url()?>user/view/user-edit-data">Edit Data</a></li>-->
+          <li class="<?php if($page=='user-edit-data')echo 'active';?>"><a href="<?=base_url()?>user/view/user-edit-data">Edit Data</a></li>
         <?php }?>
         <li class=""><a href="<?=base_url()?>dashboard/logout">Logout</a></li>
       </ul>

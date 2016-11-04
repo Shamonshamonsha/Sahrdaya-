@@ -22,8 +22,8 @@
 <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
 <div class="jumbotron text-center">
-    <h1>Name here</h1>
-    <p>Building plan approval system</p>
+    <h1>SAHRDAYA</h1>
+    <p>Building plan permit approval system</p>
 </div>
 <div class="container">
     <div class="row">

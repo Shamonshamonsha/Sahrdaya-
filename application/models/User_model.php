@@ -18,6 +18,17 @@ class User_model extends CI_Model
     {
         return $this->db
             ->where('application_id',$id)
+            ->where('status','0')
+            ->count_all_results('application_upload_status')>0;
+    }
+    public function update_appstatus($id)
+    {
+        $this->db->update('applications',['status'=>'3'],['id'=>$id]);
+    }
+    public function check_firstsubmit($id)
+    {
+        return $this->db
+            ->where('application_id',$id)
             ->count_all_results('application_upload_status')>0;
     }
     public function add_messages($data)
@@ -41,6 +52,16 @@ class User_model extends CI_Model
         return $this->db
             ->where('application_id',$id)
             ->get('application_payments');
+    }
+    public function update_data($data,$id)
+    {
+        $this->db->update('applications',$data,['id'=>$id]);
+    }
+    public function get_userdata($id)
+    {
+        return $this->db
+            ->where('id',$id)
+            ->get('applications');
     }
     public function get_cmp($id)
     {

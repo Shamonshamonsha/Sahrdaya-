@@ -29,7 +29,12 @@ class Dashboard_model extends CI_Model
             ->where('bi_id', $id)
             ->get('applications');
     }
-
+    public function check_payement($id)
+    {
+        return $this->db
+            ->where('application_id',$id)
+            ->count_all_results('application_payments')>0;
+    }
     public function get_pendingapps()
     {
         return $this->db
@@ -37,7 +42,6 @@ class Dashboard_model extends CI_Model
             ->where_in('status', ['1', '2'])
             ->get('applications');
     }
-
     public function get_pendingappsae()
     {
         return $this->db

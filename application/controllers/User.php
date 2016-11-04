@@ -66,6 +66,40 @@ class User extends CI_Controller
             redirect('user/view/user-editdocs');
         }
     }
+    public function payment()
+    {
+        $user = $this->session->userdata('user');
+        $total = $this->session->userdata('amount');
+        $txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
+        $salt = 'BV1QBwCv';
+        $MERCHANT_KEY = 'OygoFs';
+        $url = 'https://test.payu.in/_payment';
+        /*$MERCHANT_KEY = "XB9Yen";
+        $salt = "6y8sq3Ua";
+        $url = "https://secure.payu.in/_payment";*/
+        $hash='';
+        //   $pinfo='[{"name":"'.$user['fname'].'","description":"","value":"'.$total.'","isRequired":"false"}]';
+        $pd='sample-description';//json_encode(json_decode($pinfo));
+        $hash_string = $MERCHANT_KEY."|".$txnid."|".$total."|".$pd."|".$user->applicant_name."|".$user->email."|||||||||||".$salt;
+        $hash = hash('sha512', $hash_string);
+
+        $data['form']=[$txnid,$MERCHANT_KEY,$hash,$url,$pd];
+        $this->load->view('user/pages/payment',$data);
+    }
+    public function payment_success()
+    {
+
+        $this->data = array(
+          'transaction_id'=>$_POST['txnid'],
+           'status'=>'1'
+        );
+        $this->user_model->update_payment($this->data,$this->session->userdata('user')->id);
+        redirect('user/view/user-payment');
+    }
+    public function payment_error()
+    {
+        echo '<h2>Payment Failed<h2>';
+    }
     public function add_userreply()
     {
         $this->data = array(

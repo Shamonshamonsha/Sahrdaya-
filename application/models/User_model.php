@@ -28,6 +28,10 @@ class User_model extends CI_Model
     {
         $this->db->insert('complaints',$data);
     }
+    public function update_payment($data,$id)
+    {
+        $this->db->update('application_payments',$data,['application_id'=>$id]);
+    }
     public function update_doc($data,$id)
     {
         $this->db->update('applications',$data,['id'=>$id]);

@@ -18,7 +18,7 @@ class User extends CI_Controller
     public function view($page='user-home')
     {
         $this->get_data($page);
-        $this->load->view('user/header',array('page'=>$page));
+        $this->load->view('user/header',array('page'=>$page,'status'=>$this->user_model->check_status($this->session->userdata('user')->id)));
         $this->load->view('user/pages/'.$page,$this->data);
         $this->load->view('user/footer');
     }

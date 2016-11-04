@@ -2,7 +2,7 @@
     <div class="alert alert-<?=($upload_status)?'success':'warning'?> text-center">
         <?php
         if($upload_status){
-            echo 'Congraulations your application submitted properly,check view status to know the status of the application';
+            echo 'Congraulations your application submitted properly,check the remarks  to know the status of the application';
         }else{
           echo 'Please upload the following items to complete your application approval';
         }
@@ -14,7 +14,7 @@
             <strong><?=$display['title']; ?></strong>
             <?=$display['msg']; ?>
         </div>
-    <?php endif;?>
+    <?php endif; if(!$upload_status){?>
     <form class="form-horizontal" method="post" action="<?=base_url()?>applications/upload_docs" enctype="multipart/form-data">
         <div class="form-group">
             <label class="control-label col-sm-2" for="email">UID(Aadhar):</label>
@@ -169,4 +169,5 @@
             </div>
         </div>
     </form>
+    <?php }?>
 </div>

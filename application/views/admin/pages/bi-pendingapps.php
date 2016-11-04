@@ -157,7 +157,7 @@
                         $request=$this->dashboard_model->check_sitevisit($value->id)->row();
                         $request = (empty($request))?'0':$request->status;
                         ?>
-                    <a  href="<?=base_url().'common/sitevisit_request/'.$value->id?>" class="btn btn-primary <?php if($request=='1'||$request=='2')echo 'disabled ';?>">
+                    <a  href="<?=base_url().'common/sitevisit_request/'.$value->id?>" class="btn btn-primary <?php if($request=='1'||$request=='2'||$request=='4')echo 'disabled ';?>">
                         <?php
                          if($request=='1'){
                             echo 'Site visit requested';
@@ -165,7 +165,10 @@
                              echo 'Site visit approved';
                         }else if($request=='3'){
                              echo 'Rejected';
-                         }else{
+                         }else if($request=='4'){
+                             echo 'Report updated';
+                         }
+                         else{
                              echo 'Request site visit';
                          }
                         ?>
@@ -174,7 +177,7 @@
                     <a style="float: right" href="<?=base_url().'common/forward_ae/'.$value->id?>" class="btn btn-primary <?php if($value->status=='2')echo 'disabled';?>">Submit to AE</a>
                  </div>
                    <br>
-                    <div class="row">
+                <div class="row">
                     <div class="form-group">
                         <form class="form-horizontal" action="<?=base_url()?>common/app_communications" method="post">
                             <label class="control-label col-sm-2" for="email">Remarks:</label>
@@ -187,6 +190,21 @@
                         </form>
                     </div>
                 </div>
+                <?php if($request == '2'){ ?>
+                <div class="row">
+                    <div class="form-group">
+                        <form class="form-horizontal" action="<?=base_url()?>common/add_sitevisitreport" method="post">
+                            <label class="control-label col-sm-2" for="email">Enter Site visit report:</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" name="id" value="<?=$value->id?>">
+                                <textarea name="report" class="form-control" id="email" placeholder="" ></textarea>
+                                <br>
+                                <input type="submit" class="btn btn-primary" value="Submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <?php }?>
                 <div class="row">
                     <br>
                     <?php

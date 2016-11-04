@@ -41,6 +41,7 @@
         <li class="<?php if($page=='user-payment')echo 'active';?>"><a href="<?=base_url()?>user/view/user-payment">Payment</a></li>
         <li class="<?php if($page=='user-viewapplication')echo 'active';?>"><a href="<?=base_url()?>user/view/user-viewapplication">View Application</a></li>
         <li class="<?php if($page=='user-appstatus')echo 'active';?>"><a href="<?=base_url()?>user/view/user-appstatus">Remarks</a></li>
+        <li class="<?php if($page=='user-grivents')echo 'active';?>"><a href="<?=base_url()?>user/view/user-grivents">Grievance Redressal cell</a></li>
         <?php if($status) {?>
           <li class="<?php if($page=='user-editdocs')echo 'active';?>"><a href="<?=base_url()?>user/view/user-editdocs">Edit Docs</a></li>
          <!-- <li class="<?php if($page=='user-edit-data')echo 'active';?>"><a href="<?=base_url()?>user/view/user-edit-data">Edit Data</a></li>-->

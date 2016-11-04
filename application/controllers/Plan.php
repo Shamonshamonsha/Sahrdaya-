@@ -39,7 +39,7 @@ class Plan extends CI_Controller
             $this->data['plan'] = $this->upload->data('file_name');
             $this->plan_model->add_newplan($this->data);
             $this->session->set_flashdata('server_msg',array('class'=>'success','title'=>'Success','msg'=>'Plan uploaded successfully'));
-            $this->session->set_tempdata('application',[$this->data['application_id'],$this->data['password']], 300);
+            $this->session->set_tempdata('application',[$this->data['application_id'],$this->data['password'],$this->input->post('mobile_number')], 300);
             redirect('dashboard/view/arch-plansuccess');
         }
     }

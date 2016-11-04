@@ -93,6 +93,9 @@ class Dashboard extends CI_Controller
             case 'super-approvedapps':
                 $this->data['govt_approvedapps'] = $this->dashboard_model->get_pendingappsgovt()->result();
                 break;
+            case 'se-complaints':
+                $this->data['complaints'] = $this->dashboard_model->get_cmp()->result();
+                break;
         }
     }
     public function logged_in()
@@ -104,10 +107,7 @@ class Dashboard extends CI_Controller
         }
         return TRUE;
     }
-    public function test()
-    {
-        echo 'ok';
-    }
+
     public function logout()
     {
         $this->session->unset_userdata('user');

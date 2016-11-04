@@ -94,6 +94,12 @@ class Dashboard_model extends CI_Model
             ->where_in('status', ['3'])
             ->get('applications');
     }
+    public function get_cmp()
+    {
+        return $this->db
+            ->order_by('id','desc')
+            ->get('complaints');
+    }
     public function get_forwader($id)
     {
         return $this->db
@@ -103,7 +109,6 @@ class Dashboard_model extends CI_Model
     public function check_sitevisit($id)
     {
         return $this->db
-             ->select('status')
             ->where('application_id',$id)
             ->get('sitevisit_request');
     }

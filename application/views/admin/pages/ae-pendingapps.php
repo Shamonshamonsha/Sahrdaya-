@@ -40,23 +40,24 @@
                         <table class="table">
                             <?php
                             $request=$this->dashboard_model->check_sitevisit($value->id)->row();
+                            $report = $request;
                             $request = (empty($request))?'0':$request->status;
                             if($request!='0'){
                             ?>
-                            <a  href="<?=base_url().'common/sitevisit_request/'.$value->id?>" class="btn btn-primary <?php if($request=='1'||$request=='2')echo 'disabled ';?>">
+                            <a  href="<?=base_url().'common/approve_sitevisit/'.$value->id?>" class=" btn-sitevisit btn btn-primary <?php if($request=='2'||$request=='4')echo 'disabled ';?>">
                                 <?php
                                 if($request=='1'){
                                     echo 'Site visit requested';
                                 }else if($request=='2'){
                                     echo 'Site visit approved';
-                                }else if($request=='3'){
-                                    echo 'Rejected';
-                                }else{
-                                    echo 'Request site visit';
+                                }else if($request=='4'){
+                                    echo 'Report updated';
                                 }
                                 ?>
                             </a>
-                            <?php } ?>
+                            <?php } if($request=='4'){ if(!empty($report)){?>
+                                   <p><?=$report->site_report;?></p>
+                              <?php }}?>
                             <tr>
                                 <th>Applicant Name</th>
                                 <td><?=$value->applicant_name?></td>
@@ -316,4 +317,13 @@
         $('#app1-uniqid').val(id);
         $('#remarkModal').modal('show');
     })
+    $('.btn-sitevisit').click(function (e) {
+        e.preventDefault();
+        //$(this).attr('href'));
+        if(confirm("Are you sure to approve this?")){
+            window.location = $(this).attr('href');
+        }else{
+
+        }
+    });
 </script>

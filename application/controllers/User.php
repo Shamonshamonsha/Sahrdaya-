@@ -35,6 +35,9 @@ class User extends CI_Controller
             case 'user-appstatus':
                 $this->data['app_status'] = $this->user_model->check_appstatus($this->session->userdata('user')->id)->result();
                 break;
+            case 'user-grivents':
+                $this->data['complaints'] = $this->user_model->get_cmp($this->session->userdata('user')->id)->result();
+                break;
             case 'user-payment':
                 $this->data['payment'] = $this->user_model->get_payment($this->session->userdata('user')->id)->row();
                 break;
@@ -75,5 +78,17 @@ class User extends CI_Controller
         $this->user_model->add_messages($this->data);
         $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Remarks added '));
         redirect('user/view/user-appstatus');
+    }
+    public function add_complaint()
+    {
+        $this->data = array(
+            'application_id'=>$this->session->userdata('user')->id,
+            'complaints'=>$this->input->post('complaints'),
+            'name'=>$this->session->userdata('user')->applicant_name,
+            'time_stamp'=>time()
+        );
+        $this->user_model->add_complaint($this->data);
+        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Complaint registerd'));
+        redirect('user/view/user-grivents');
     }
 }

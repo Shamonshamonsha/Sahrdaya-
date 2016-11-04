@@ -12,8 +12,16 @@ class Common_model extends CI_Model
     {
         $this->db->insert('application_remarks',$data);
     }
-    public function update_appstatus($id)
+    public function add_messages($data)
     {
-        $this->db->update('applications',['status'=>'2'],['id'=>$id]);
+        $this->db->insert('application_remarks',$data);
+    }
+    public function add_payement($data)
+    {
+        $this->db->insert('application_payments',$data);
+    }
+    public function update_appstatus($id,$status)
+    {
+        $this->db->update('applications',['status'=>$status],['id'=>$id]);
     }
 }

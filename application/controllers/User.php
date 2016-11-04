@@ -33,8 +33,21 @@ class User extends CI_Controller
                 $this->data['upload_status'] = $this->user_model->check_status($this->session->userdata('user')->id);
                 break;
             case 'user-appstatus':
-                $this->data['app_status'] = $this->user_model->check_appstatus($this->session->userdata('user')->id)->row();
+                $this->data['app_status'] = $this->user_model->check_appstatus($this->session->userdata('user')->id)->result();
                 break;
         }
+    }
+    public function add_userreply()
+    {
+        $this->data = array(
+            'application_id'=>$this->input->post('id'),
+            'sender_id'=>$this->session->userdata('user')->id,
+            'content'=>$this->input->post('remarks'),
+            'added_by'=>'Applicant',
+            'time_stamp'=>time()
+        );
+        $this->user_model->add_messages($this->data);
+        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Remarks added '));
+        redirect('user/view/user-appstatus');
     }
 }

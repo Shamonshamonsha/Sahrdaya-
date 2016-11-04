@@ -38,9 +38,9 @@
     <div class="collapse navbar-collapse navbar-right">
       <ul class="nav navbar-nav">
         <li class="<?php if($page=='user-home')echo 'active';?>"><a href="<?=base_url()?>user/view/">Home</a></li>
-        <li class="<?php if($page=='user-appreply')echo 'active';?>"><a href="<?=base_url()?>user/view/user-appreply">Messages</a></li>
+        <li class="<?php if($page=='user-appreply')echo 'active';?>"><a href="<?=base_url()?>user/view/user-appreply">Payment</a></li>
         <li class="<?php if($page=='user-viewapplication')echo 'active';?>"><a href="<?=base_url()?>user/view/user-viewapplication">View Application</a></li>
-        <li class="<?php if($page=='user-appstatus')echo 'active';?>"><a href="<?=base_url()?>user/view/user-appstatus">View Status</a></li>
+        <li class="<?php if($page=='user-appstatus')echo 'active';?>"><a href="<?=base_url()?>user/view/user-appstatus">Remarks</a></li>
         <li class=""><a href="<?=base_url()?>dashboard/logout">Logout</a></li>
       </ul>
     </div>

@@ -20,11 +20,17 @@ class User_model extends CI_Model
             ->where('application_id',$id)
             ->count_all_results('application_upload_status')>0;
     }
+    public function add_messages($data)
+    {
+        $this->db->insert('application_remarks',$data);
+    }
     public function check_appstatus($id)
     {
-        return $this->db
-            ->select('status')
-            ->where('id',$id)
-            ->get('applications');
+        /*return $this->db
+            ->where('application_id',$id)
+            ->order_by('id','desc')
+            ->get('application_remarks');*/
+        $sql = "SELECT * FROM application_remarks LEFT JOIN users ON application_remarks.sender_id=users.id WHERE application_remarks.application_id=? ORDER BY application_remarks.id DESC";
+        return $this->db->query($sql,array($id));
     }
 }

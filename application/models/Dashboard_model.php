@@ -11,28 +11,51 @@ class Dashboard_model extends CI_Model
     public function get_header($type)
     {
         return $this->db
-            ->where('user_type',$type)
+            ->where('user_type', $type)
             ->get('header');
     }
+
     public function get_townplanners($type)
     {
         return $this->db
-            ->where('user_type',$type)
+            ->where('user_type', $type)
             ->get('users');
     }
+
     public function get_allplans($id)
     {
         return $this->db
-            ->order_by('id','desc')
-            ->where('bi_id',$id)
+            ->order_by('id', 'desc')
+            ->where('bi_id', $id)
             ->get('applications');
     }
+
     public function get_pendingapps()
     {
         return $this->db
-            ->order_by('id','desc')
-            ->where_in('status',['1','2'])
+            ->order_by('id', 'desc')
+            ->where_in('status', ['1', '2'])
             ->get('applications');
+    }
+
+    public function get_pendingappsae()
+    {
+        return $this->db
+            ->order_by('id', 'desc')
+            ->where_in('status', ['2', '3'])
+            ->get('applications');
+    }
+
+    public function get_forwader($id)
+    {
+        return $this->db
+            ->where('application_id',$id)
+            ->get('application_forwarder');
+    }
+    public function get_remarks($id)
+    {
+        $sql = "SELECT * FROM application_remarks LEFT JOIN users ON application_remarks.sender_id=users.id WHERE application_remarks.application_id=? ORDER BY application_remarks.id DESC";
+        return $this->db->query($sql,array($id));
     }
     public function get_localbody()
     {

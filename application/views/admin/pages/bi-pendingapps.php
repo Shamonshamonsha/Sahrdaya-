@@ -150,10 +150,46 @@
                         <td><a target="_blank" href="<?=base_url().'uploads/docs/'.$value->noc_cer?>">view/download</a></td>
                     </tr>
                 </table>
-                <button type="button" app-id="<?=$value->id?>" class="remark-btn btn btn-primary">Remarks</button>
+                <div class="row">
+                <a style="float: right" href="<?=base_url().'common/forward_ae/'.$value->id?>" class="btn btn-primary <?php if($value->status=='2')echo 'disabled';?>">Submit to AE</a>
+                 </div>
+                   <br>
+                    <div class="row">
+                    <div class="form-group">
+                        <form class="form-horizontal" action="<?=base_url()?>common/app_communications" method="post">
+                            <label class="control-label col-sm-2" for="email">Remarks:</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" name="id" value="<?=$value->id?>">
+                                <textarea name="remarks" class="form-control" id="email" placeholder="" ></textarea>
+                                <br>
+                                <input type="submit" class="btn btn-primary" value="Submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <br>
+                    <?php
+                    $remarks_data = $this->dashboard_model->get_remarks($value->id)->result();
+                    foreach ($remarks_data as $value){
+                        ?>
+                        <div class="alert alert-warning">
+                            Message:<?=$value->content?>
+                            <br>
+                            Posted_by:<strong><?=$value->added_by?></strong>
+                            <?php if(!empty($value->name)) {?>
+                            <br>
+                            Officer Name:<strong><?=$value->name?></strong>
+                            <?php } ?>
+                            <br>
+                            Posted On:<strong><?=date('d-M-y',$value->time_stamp)?></strong>
+                        </div>
+                    <?php }?>
+                 </div>
+               <!-- <button type="button" app-id="<?=$value->id?>" class="remark-btn btn btn-primary">Remarks</button>
                 <a href="<?=base_url().'common/forward_ae/'.$value->id?>" class="btn btn-primary <?php if($value->status=='2')echo 'disabled';?>">Submit to AE</a>
                 <button type="button" app-id="<?=$value->id?>" class="req-btn btn btn-danger">Request for Site visit</button>
-                <button type="button" app-id="<?=$value->id?>" class="report-btn btn btn-primary">Site Visit Report</button>
+                <button type="button" app-id="<?=$value->id?>" class="report-btn btn btn-primary">Site Visit Report</button>-->
             </div>
         </div>
     </div>

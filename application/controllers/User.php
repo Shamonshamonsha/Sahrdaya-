@@ -37,6 +37,10 @@ class User extends CI_Controller
                 break;
         }
     }
+    public function edit_doc()
+    {
+        
+    }
     public function add_userreply()
     {
         $this->data = array(

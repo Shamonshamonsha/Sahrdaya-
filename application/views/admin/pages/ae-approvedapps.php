@@ -13,8 +13,7 @@
         </div>
     <?php endif;?>
     <div class="panel-group" id="accordion">
-        <?php if(empty($dt_pendingapps)) echo '<h2>No pending applications</h2>'; ?>
-        <?php  foreach ($dt_pendingapps as $key=>$value){ ?>
+        <?php  foreach ($ae_approvedapps as $key=>$value){ ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
@@ -23,24 +22,12 @@
                     </h4>
                     <div style="float:right; margin-top: -20px">
                         <?php
-                        if($value->status=='1'){
-                            echo '<strong style="color: #c9302c">Pending with BI</strong>';
+                        if($value->status=='4'){
+                            echo '<strong style="color: #c9302c">Pending</strong>';
                         }else if($value->status=='3'){
                             echo '<strong style="color: #acc97b">Approved</strong>';
-                        }else if($value->status=='4'){
-                            echo '<strong style="color: #c9302c">Pending with AEE</strong>';
                         }else if($value->status=='5'){
-                            echo '<strong style="color: #c9302c">Pending with EE</strong>';
-                        }else if($value->status=='2'){
-                            echo '<strong style="color: #c9302c">Pending with Secretary</strong>';
-                        }else if($value->status=='6'){
-                            echo '<strong style="color: #c9302c">Pending with AE</strong>';
-                        }
-                        else if($value->status=='7'){
-                            echo '<strong style="color: #c9302c">Pending with DTO</strong>';
-                        }
-                        else if($value->status=='8'){
-                            echo '<strong style="color: #c9302c">Forward to CTO</strong>';
+                            echo '<strong style="color: #c9302c">Forward to EE</strong>';
                         }
                         ?>
                     </div>
@@ -165,12 +152,19 @@
                                 <td><a target="_blank" href="<?=base_url().'uploads/docs/'.$value->noc_cer?>">view/download</a></td>
                             </tr>
                         </table>
-                        <a  href="<?=base_url().'common/forward_ct/'.$value->id?>" class="btn btn-primary <?php if($value->status=='8')echo 'disabled';?>">Forward to CTO</a>
-                        <a style="float: right" href="<?=base_url().'common/approve_appdt/'.$value->id?>" class="btn btn-primary <?php if($value->status=='3'||$value->status=='8')echo 'disabled';?>">Approve</a>
+                        <!-- <button type="button" app-id="<?=$value->id?>" class="remark-btn btn btn-primary">Add Fees</button>
+                        <?php if($value->totalbuild_area>'300'&&$value->totalbuild_area<750){ ?>
+                            <div class="row">
+                                <a style="float: right" href="<?=base_url().'common/approve_appaee/'.$value->id?>" class="btn btn-primary <?php if($value->status=='3')echo 'disabled';?>">Approve</a>
+                            </div>
+                        <?php } else {?>
+                            <a style="float: right" href="<?=base_url().'common/forward_ee/'.$value->id?>" class="btn btn-primary <?php if($value->status=='5')echo 'disabled';?>">Forward EE</a>
+                            <br>
+                        <?php }?>-->
                         <br>
                         <div class="row">
                             <div class="form-group">
-                                <form class="form-horizontal" action="<?=base_url()?>common/app_communications/0" method="post">
+                                <form class="form-horizontal" action="<?=base_url()?>common/app_communications/1" method="post">
                                     <label class="control-label col-sm-2" for="email">Remarks:</label>
                                     <div class="col-sm-10">
                                         <input type="hidden" name="id" value="<?=$value->id?>">

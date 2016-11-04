@@ -13,6 +13,7 @@
         </div>
     <?php endif;?>
     <div class="panel-group" id="accordion">
+        <?php if(empty($ae_pendingapps)) echo '<h2>No pending applications</h2>'; ?>
         <?php  foreach ($ae_pendingapps as $key=>$value){ ?>
             <div class="panel panel-default">
                 <div class="panel-heading">

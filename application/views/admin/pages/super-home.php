@@ -1,3 +1,1 @@
-<?php
-
-echo 'ok';
+<h2>Dashboard</h2>

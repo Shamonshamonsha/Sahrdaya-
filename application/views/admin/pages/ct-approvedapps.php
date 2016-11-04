@@ -13,7 +13,7 @@
         </div>
     <?php endif;?>
     <div class="panel-group" id="accordion">
-        <?php  foreach ($dt_approvedapps as $key=>$value){ ?>
+        <?php  foreach ($ct_approvedapps as $key=>$value){ ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">

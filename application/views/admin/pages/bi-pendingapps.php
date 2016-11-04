@@ -13,6 +13,7 @@
         </div>
     <?php endif;?>
 <div class="panel-group" id="accordion">
+    <?php if(empty($bi_pendingapps)) echo '<h2>No pending applications</h2>'; ?>
     <?php  foreach ($bi_pendingapps as $key=>$value){ ?>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -23,7 +24,7 @@
             <div style="float:right; margin-top: -20px">
                 <?php
                 if($value->status=='1'){
-                    echo '<strong style="color: #c9302c">Pending</strong>';
+                    echo '<strong style="color: #c9302c">Pending With BI</strong>';
                 }else if($value->status=='2'){
                     echo '<strong style="color: #acc97b">Forward to AE</strong>';
                 }

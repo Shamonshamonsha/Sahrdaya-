@@ -13,6 +13,7 @@
         </div>
     <?php endif;?>
     <div class="panel-group" id="accordion">
+        <?php if(empty($ct_pendingapps)) echo '<h2>No pending applications</h2>'; ?>
         <?php  foreach ($ct_pendingapps as $key=>$value){ ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -39,7 +40,7 @@
                             echo '<strong style="color: #c9302c">Pending with DTO</strong>';
                         }
                         else if($value->status=='8'){
-                            echo '<strong style="color: #c9302c">Pending with CTO</strong>';
+                            echo '<strong style="color: #c9302c">Forward to CTO</strong>';
                         }else if($value->status=='9'){
                             echo '<strong style="color: #c9302c">Forward to Govt</strong>';
                         }
@@ -166,8 +167,8 @@
                                 <td><a target="_blank" href="<?=base_url().'uploads/docs/'.$value->noc_cer?>">view/download</a></td>
                             </tr>
                         </table>
-                        <a  href="<?=base_url().'common/forward_govt/'.$value->id?>" class="btn btn-primary <?php if($value->status=='9')echo 'disabled';?>">Forward to GOVT</a>
-                        <a style="float: right" href="<?=base_url().'common/approve_ct/'.$value->id?>" class="btn btn-primary <?php if($value->status=='3'||$value->status=='9')echo 'disabled';?>">Approve</a>
+                        <a  href="<?=base_url().'common/forward_ct/'.$value->id?>" class="btn btn-primary <?php if($value->status=='9')echo 'disabled';?>">Forward to GOVT</a>
+                        <a style="float: right" href="<?=base_url().'common/approve_appdt/'.$value->id?>" class="btn btn-primary <?php if($value->status=='3'||$value->status=='9')echo 'disabled';?>">Approve</a>
                         <br>
                         <div class="row">
                             <div class="form-group">

@@ -184,7 +184,13 @@ class Common extends CI_Controller
         $this->common_model->add_payement($this->data);
         $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Payment added'));
         redirect('dashboard/view/ae-pendingapps');
-
+    }
+    public function govt_action($id,$update_val='1')
+    {
+        $status = ($update_val=='1')?'3':'10';
+        $this->common_model->update_appstatus($id,$status);
+        $this->session->set_flashdata('server_msg', array('class' => 'success', 'title' => 'Success', 'msg' =>'Application Updated'));
+        redirect('dashboard/view/aee-pendingapps');
     }
     public function logout()
     {

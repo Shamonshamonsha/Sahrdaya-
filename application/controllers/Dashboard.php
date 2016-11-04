@@ -60,8 +60,14 @@ class Dashboard extends CI_Controller
             case 'ee-approvedapps':
                 $this->data['ee_approvedapps'] = $this->dashboard_model->get_approvedapps()->result();
                 break;
+            case 'ae-approvedapps':
+                $this->data['ae_approvedapps'] = $this->dashboard_model->get_approvedapps()->result();
+                break;
             case 'se-approvedapps':
                 $this->data['se_approvedapps'] = $this->dashboard_model->get_approvedapps()->result();
+                break;
+            case 'bi-approvedapps':
+                $this->data['bi_approvedapps'] = $this->dashboard_model->get_approvedapps()->result();
                 break;
             case 'se-pendingapps':
                 $this->data['se_pendingapps'] = $this->dashboard_model->get_pendingappsse()->result();
@@ -74,6 +80,18 @@ class Dashboard extends CI_Controller
                 break;
             case 'dt-approvedapps':
                 $this->data['dt_approvedapps'] = $this->dashboard_model->get_approvedapps()->result();
+                break;
+            case 'ct-approvedapps':
+                $this->data['ct_approvedapps'] = $this->dashboard_model->get_approvedapps()->result();
+                break;
+            case 'super-approvedapps':
+                $this->data['govt_approvedapps'] = $this->dashboard_model->get_approvedapps()->result();
+                break;
+            case 'super-pendingapps':
+                $this->data['govt_pendingapps'] = $this->dashboard_model->get_pendingappsgovt()->result();
+                break;
+            case 'super-approvedapps':
+                $this->data['govt_approvedapps'] = $this->dashboard_model->get_pendingappsgovt()->result();
                 break;
         }
     }

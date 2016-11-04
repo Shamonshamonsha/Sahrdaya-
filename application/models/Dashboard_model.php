@@ -80,6 +80,13 @@ class Dashboard_model extends CI_Model
             ->where_in('status', ['1','2','4','5','6','7','8','9'])
             ->get('applications');
     }
+    public function get_pendingappsgovt()
+    {
+        return $this->db
+            ->order_by('id', 'desc')
+            ->where_in('status', ['1','2','4','5','6','7','8','9'])
+            ->get('applications');
+    }
     public function get_approvedapps()
     {
         return $this->db
